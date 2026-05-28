@@ -1,0 +1,140 @@
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  height: var(--nav-height);
+  border-bottom: 1px solid var(--border-subtle);
+  background: rgba(9, 9, 9, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+.nav {
+  height: 100%;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 var(--content-padding);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  font-size: 0.9375rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--text);
+  transition: color 0.2s;
+  flex-shrink: 0;
+}
+
+.logo:hover {
+  color: var(--accent-light);
+}
+
+/* Desktop links */
+.links {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.link {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  padding: 0.375rem 0.75rem;
+  border-radius: 6px;
+  transition: color 0.18s, background 0.18s;
+}
+
+.link:hover {
+  color: var(--text);
+  background: var(--surface-2);
+}
+
+.link.active {
+  color: var(--text);
+  background: var(--surface-2);
+}
+
+/* Hamburger button */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  width: 36px;
+  height: 36px;
+  border-radius: 6px;
+  color: var(--text-secondary);
+  flex-shrink: 0;
+  transition: color 0.18s, background 0.18s;
+}
+
+.hamburger:hover {
+  color: var(--text);
+  background: var(--surface-2);
+}
+
+.hamburger span {
+  display: block;
+  width: 18px;
+  height: 1.5px;
+  background: currentColor;
+  border-radius: 2px;
+  transition: transform 0.22s, opacity 0.22s;
+}
+
+/* Animated bars on open */
+.barTop {
+  transform: translateY(6.5px) rotate(45deg);
+}
+.barMid {
+  opacity: 0;
+  transform: scaleX(0);
+}
+.barBot {
+  transform: translateY(-6.5px) rotate(-45deg);
+}
+
+/* Mobile */
+@media (max-width: 640px) {
+  .hamburger {
+    display: flex;
+  }
+
+  .links {
+    position: fixed;
+    top: var(--nav-height);
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    background: rgba(9, 9, 9, 0.97);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+    padding: 0.5rem 0 1rem;
+    transform: translateY(-110%);
+    opacity: 0;
+    transition: transform 0.25s ease, opacity 0.25s ease;
+    pointer-events: none;
+  }
+
+  .links.open {
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: all;
+  }
+
+  .link {
+    padding: 0.875rem var(--content-padding);
+    border-radius: 0;
+    font-size: 1rem;
+  }
+}

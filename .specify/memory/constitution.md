@@ -1,50 +1,82 @@
-# [PROJECT_NAME] Constitution
-<!-- Example: Spec Constitution, TaskFlow Constitution, etc. -->
+<!--
+Sync Impact Report
+- Version change: template -> 1.0.0
+- Modified principles:
+	- [PRINCIPLE_1_NAME] -> I. Static-First Delivery
+	- [PRINCIPLE_2_NAME] -> II. Responsive and Accessible UI
+	- [PRINCIPLE_3_NAME] -> III. Minimal Client-Side Complexity
+	- [PRINCIPLE_4_NAME] -> IV. Verifiable Release Checks
+	- [PRINCIPLE_5_NAME] -> V. Content and Asset Discipline
+- Added sections:
+	- Minimum Technical Standards
+	- Delivery Workflow
+- Removed sections:
+	- None
+- Templates requiring updates:
+	- ✅ no changes required: .specify/templates/plan-template.md
+	- ✅ no changes required: .specify/templates/spec-template.md
+	- ✅ no changes required: .specify/templates/tasks-template.md
+- Follow-up TODOs:
+	- None
+-->
+
+# Static Web App Constitution
 
 ## Core Principles
 
-### [PRINCIPLE_1_NAME]
-<!-- Example: I. Library-First -->
-[PRINCIPLE_1_DESCRIPTION]
-<!-- Example: Every feature starts as a standalone library; Libraries must be self-contained, independently testable, documented; Clear purpose required - no organizational-only libraries -->
+### I. Static-First Delivery
+The application MUST be deployable as static files over standard web hosting.
+Pages, assets, and routing MUST work without a server-side runtime unless a
+deviation is explicitly approved in the relevant spec or plan.
 
-### [PRINCIPLE_2_NAME]
-<!-- Example: II. CLI Interface -->
-[PRINCIPLE_2_DESCRIPTION]
-<!-- Example: Every library exposes functionality via CLI; Text in/out protocol: stdin/args → stdout, errors → stderr; Support JSON + human-readable formats -->
+### II. Responsive and Accessible UI
+Every page MUST support current desktop and mobile viewport sizes.
+Markup MUST use semantic HTML, keyboard navigation MUST remain usable, and text
+and controls MUST preserve readable contrast and visible focus states.
 
-### [PRINCIPLE_3_NAME]
-<!-- Example: III. Test-First (NON-NEGOTIABLE) -->
-[PRINCIPLE_3_DESCRIPTION]
-<!-- Example: TDD mandatory: Tests written → User approved → Tests fail → Then implement; Red-Green-Refactor cycle strictly enforced -->
+### III. Minimal Client-Side Complexity
+Client-side JavaScript MUST be limited to behavior that materially improves the
+user experience. Content rendering, navigation, and primary page access MUST
+not depend on heavy runtime logic when a simpler static approach is sufficient.
 
-### [PRINCIPLE_4_NAME]
-<!-- Example: IV. Integration Testing -->
-[PRINCIPLE_4_DESCRIPTION]
-<!-- Example: Focus areas requiring integration tests: New library contract tests, Contract changes, Inter-service communication, Shared schemas -->
+### IV. Verifiable Release Checks
+Every releasable change MUST pass a production build or equivalent static export
+check. Changed pages MUST be manually or automatically verified for broken
+links, missing assets, and obvious layout regressions before merge.
 
-### [PRINCIPLE_5_NAME]
-<!-- Example: V. Observability, VI. Versioning & Breaking Changes, VII. Simplicity -->
-[PRINCIPLE_5_DESCRIPTION]
-<!-- Example: Text I/O ensures debuggability; Structured logging required; Or: MAJOR.MINOR.BUILD format; Or: Start simple, YAGNI principles -->
+### V. Content and Asset Discipline
+All shipped assets MUST have a clear purpose and reasonable size for web
+delivery. Images, fonts, and scripts MUST be optimized for the page they serve,
+and unused files MUST not be committed as part of the release artifact.
 
-## [SECTION_2_NAME]
-<!-- Example: Additional Constraints, Security Requirements, Performance Standards, etc. -->
+## Minimum Technical Standards
 
-[SECTION_2_CONTENT]
-<!-- Example: Technology stack requirements, compliance standards, deployment policies, etc. -->
+- The site MUST be hostable from static files such as HTML, CSS, JavaScript,
+	images, fonts, and other front-end assets.
+- Public configuration values MAY be exposed in client code, but secrets MUST
+	not be embedded in the static application.
+- Paths and asset references MUST resolve correctly in the target hosting
+	environment.
+- If a framework is used, its output MUST be compatible with static hosting.
 
-## [SECTION_3_NAME]
-<!-- Example: Development Workflow, Review Process, Quality Gates, etc. -->
+## Delivery Workflow
 
-[SECTION_3_CONTENT]
-<!-- Example: Code review requirements, testing gates, deployment approval process, etc. -->
+- Each feature spec and implementation plan MUST confirm compliance with the
+	static-first, accessibility, and release-check principles.
+- Pull requests MUST include evidence that the site builds successfully and that
+	the changed UI was reviewed in a browser.
+- Exceptions to these rules MUST be documented with a concrete reason and a
+	simpler rejected alternative.
 
 ## Governance
-<!-- Example: Constitution supersedes all other practices; Amendments require documentation, approval, migration plan -->
 
-[GOVERNANCE_RULES]
-<!-- Example: All PRs/reviews must verify compliance; Complexity must be justified; Use [GUIDANCE_FILE] for runtime development guidance -->
+This constitution supersedes conflicting local practices for static web app
+work in this repository. Compliance MUST be checked during spec creation,
+planning, implementation, and review.
 
-**Version**: [CONSTITUTION_VERSION] | **Ratified**: [RATIFICATION_DATE] | **Last Amended**: [LAST_AMENDED_DATE]
-<!-- Example: Version: 2.1.1 | Ratified: 2025-06-13 | Last Amended: 2025-07-16 -->
+Amendments MUST be made in the constitution file and reviewed through the same
+process as code changes. Versioning follows semantic versioning: MAJOR for
+breaking governance changes, MINOR for new or materially expanded rules, and
+PATCH for clarifications that do not change intent.
+
+**Version**: 1.0.0 | **Ratified**: 2026-05-27 | **Last Amended**: 2026-05-27

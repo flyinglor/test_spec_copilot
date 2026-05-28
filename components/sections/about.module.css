@@ -1,0 +1,181 @@
+/* =====================================================================
+   About page styles (AboutHero + AboutDetails)
+   ===================================================================== */
+
+/* ── Hero ── */
+
+.hero {
+  position: relative;
+  overflow: hidden;
+  padding: clamp(4rem, 12vw, 8rem) 0 clamp(3rem, 8vw, 5rem);
+}
+
+/* Ambient glow */
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -180px;
+  right: -120px;
+  width: 640px;
+  height: 640px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(124, 106, 247, 0.07) 0%,
+    transparent 70%
+  );
+  pointer-events: none;
+  user-select: none;
+}
+
+.availableBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--success);
+  padding: 0.3rem 0.75rem 0.3rem 0.6rem;
+  border: 1px solid rgba(52, 211, 153, 0.2);
+  border-radius: 99px;
+  background: rgba(52, 211, 153, 0.06);
+  margin-bottom: 2rem;
+}
+
+.availableBadge::before {
+  content: '';
+  flex-shrink: 0;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--success);
+  animation: pulse 2.2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.4;
+    transform: scale(0.75);
+  }
+}
+
+.heroName {
+  font-size: clamp(3.25rem, 10vw, 6.5rem);
+  font-weight: 800;
+  letter-spacing: -0.045em;
+  line-height: 0.95;
+  background: linear-gradient(160deg, #f0f0f0 0%, #555 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 0.6rem;
+}
+
+.heroRole {
+  font-size: clamp(1rem, 2.5vw, 1.375rem);
+  font-weight: 500;
+  color: var(--accent-light);
+  letter-spacing: -0.01em;
+  margin-bottom: 1.5rem;
+}
+
+.heroTagline {
+  font-size: clamp(0.9375rem, 1.8vw, 1.1rem);
+  color: var(--text-secondary);
+  max-width: 52ch;
+  line-height: 1.65;
+  margin-bottom: 2.5rem;
+  font-style: italic;
+}
+
+.heroSkills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+}
+
+.heroLocation {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.8125rem;
+  color: var(--text-muted);
+}
+
+/* ── Details ── */
+
+.details {
+  padding-bottom: clamp(3rem, 8vw, 6rem);
+  border-top: 1px solid var(--border-subtle);
+  padding-top: clamp(3rem, 8vw, 5rem);
+}
+
+.detailsGrid {
+  display: grid;
+  grid-template-columns: 1fr 260px;
+  gap: 4rem;
+  align-items: start;
+}
+
+.bioText {
+  font-size: 1.0625rem;
+  color: var(--text-secondary);
+  line-height: 1.85;
+  white-space: pre-line;
+}
+
+/* Sidebar interest card */
+.sideCard {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 1.5rem;
+  position: sticky;
+  top: calc(var(--nav-height) + 1.5rem);
+}
+
+.sideCardTitle {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 1rem;
+}
+
+.sideCardItems {
+  display: flex;
+  flex-direction: column;
+}
+
+.sideCardItem {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  padding: 0.45rem 0;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.sideCardItem:last-child {
+  border-bottom: none;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .detailsGrid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .sideCard {
+    position: static;
+    order: -1;
+  }
+}
