@@ -43,14 +43,32 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # Spec 文档语义检查（Spectral）
-      - name: Lint spec documents
-        uses: stoplightio/spectral-action@latest
-        with:
-          file_glob: 'specs/**/*.md'
-          
       - name: Check out repository
         uses: actions/checkout@v4
+
+      - name: Verify constitution exists
+        run: |
+          if [ ! -f ".specify/memory/constitution.md" ]; then
+            echo "::error::Missing constitution.md - run /speckit.constitution first"
+            exit 1
+          fi
+
+      - name: Verify specs exist
+        env:
+          BRANCH_NAME: ${{ github.head_ref || github.ref_name }}
+        run: |
+          SPEC_DIR="specs/${BRANCH_NAME}"
+          if [ ! -d "$SPEC_DIR" ]; then
+            echo "::warning::No spec directory found for branch ${BRANCH_NAME}"
+            echo "Consider running /speckit.specify before implementation"
+          fi
+
+      - name: Lint spec documents
+        uses: DavidAnson/markdownlint-cli2-action@v19
+        with:
+          globs: |
+            specs/**/*.md
+            .specify/**/*.md
 
       - name: Set up Node.js
         uses: actions/setup-node@v4
