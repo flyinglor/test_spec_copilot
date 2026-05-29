@@ -43,6 +43,12 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # Spec 文档语义检查（Spectral）
+      - name: Lint spec documents
+        uses: stoplightio/spectral-action@latest
+        with:
+          file_glob: 'specs/**/*.md'
+          
       - name: Check out repository
         uses: actions/checkout@v4
 
